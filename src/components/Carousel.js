@@ -33,8 +33,6 @@ rotateCarousel= ()=> {
     this.setState({angle: this.state.theta * this.state.selectedindex * -1});
   }
 
-
-
 componentDidMount() {
     this.setState({theta : 360 / this.state.cellCount});
     this.setState({radius : Math.round( ( this.state.cellSize / 2) / Math.tan( Math.PI / this.state.cellCount ) )});

@@ -20,7 +20,4 @@ const CellList = ({cellCount, theta, radius}) => {
 
 
 
-
-
-
 export { CellList };
