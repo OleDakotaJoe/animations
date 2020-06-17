@@ -13,66 +13,44 @@ class Carousel extends React.Component {
             selectedindex: 0,
             radius: Number,
             theta: Number,
-            angle: Number,
+            angle: 0,
             cellCount: 9,
-            radius: Number
+            cellSize: 210
 
 
         }
     }
 
 decrementIndex= () => {
-    this.setState({selectedindex: this.state.selectedindex -1});
-   // this.changeCarousel();
+    this.setState({selectedindex: this.state.selectedindex -1}, () => this.rotateCarousel());
 }
 
 incrementIndex= () => {
-    this.setState({selectedindex: this.state.selectedindex + 1});
-    //this.changeCarousel();
+    this.setState({selectedindex: this.state.selectedindex + 1}, ()=> this.rotateCarousel());
 }
 
 rotateCarousel= ()=> {
     this.setState({angle: this.state.theta * this.state.selectedindex * -1});
   }
 
-changeCarousel = () => {
-    this.setState({theta : 360 / this.state.cellCount})
-    let cellSize = 210;
-    this.setState({radius : Math.round( ( cellSize / 2) / Math.tan( Math.PI / this.state.cellCount ) )});
-
-    // for ( let i=0; i < this.state.cellCount-1 /*made a change ref orig doc*/; i++ ) {
-    //   let cell = cells[i];
-    //   if ( i < this.state.cellCount-1/*here too*/ ) {
-    //     // visible cell
-    //     cell.style.opacity = 1;
-    //     let cellAngle = this.state.theta * i;
-    //     cell.style.transform = `rotateY(${cellAngle}deg) translateZ(${this.state.radius} + 'px)`;
-    //   } else {
-    //     // hidden cell
-    //     cell.style.opacity = 0;
-    //     cell.style.transform = 'none';
-    //   }
-    // }
-  
-    this.rotateCarousel();
-  }
-
-
-
 
 
 componentDidMount() {
-    console.log()
+    this.setState({theta : 360 / this.state.cellCount});
+    this.setState({radius : Math.round( ( this.state.cellSize / 2) / Math.tan( Math.PI / this.state.cellCount ) )});
 }
 
 
-
     render() {
+
+
+
+        
         return(
             <div>
                 <div className="scene">
                     <div className="carousel" style={{'transform' : `translateZ(${-this.state.radius}px)rotateY(${this.state.angle}deg)`}}>
-                    <CellList cellCount={this.state.cellCount} />
+                    <CellList cellCount={this.state.cellCount} theta={this.state.theta} radius={this.state.radius} />
                     </div>
                 </div>
 

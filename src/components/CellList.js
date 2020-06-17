@@ -3,22 +3,13 @@ import CarouselCell from './CarouselCell';
 
 
 
-const CellList = ({cellCount}) => {
+const CellList = ({cellCount, theta, radius}) => {
 
     let list = [];
     for (let i = 0; i < cellCount; i++) {
-      list.push(<CarouselCell index={i + 1} key={i+1} id={i+1}/>)
+      let cellAngle = theta * (i)
+      list.push(<CarouselCell index={i + 1} key={i+1} id={i+1} cellAngle={cellAngle} radius={radius} />)
     } 
-
-
-
-
-
-
-
-    console.log(list)
-
-
         
   return(
     
